@@ -94,3 +94,8 @@ footer {
     padding: 40px 15px;
   }
 }
+
+.moved {
+  text-decoration-line: line-through;
+  font-size: 0.8rem;
+}
