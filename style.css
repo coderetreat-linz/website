@@ -47,9 +47,9 @@ header p {
 
 /* Sections */
 section {
-  padding: 60px 20px;
+  padding: 0 20px;
   max-width: 800px;
-  margin: 0 auto;
+  margin: 60px auto;
 }
 
 section h2 {
@@ -69,6 +69,10 @@ section h2 {
 
 .btn {
   margin-top: 15px;
+}
+
+p {
+  margin-bottom: 15px;
 }
 
 /* Footer */
@@ -91,7 +95,8 @@ footer {
   }
 
   section {
-    padding: 40px 15px;
+    padding: 0 15px;
+    margin: 40px auto;
   }
 }
 
