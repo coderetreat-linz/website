@@ -1,106 +1,287 @@
-/* Reset & Base Styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@font-face {
+  font-family: "Red Hat Display";
+  src: url("fonts/red-hat-display.woff2") format("woff2");
+  font-weight: 300 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Red Hat Text";
+  src: url("fonts/red-hat-text.woff2") format("woff2");
+  font-weight: 300 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Red Hat Mono";
+  src: url("fonts/red-hat-mono.woff2") format("woff2");
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+:root {
+  --ground: #f2f4f5;
+  --ink: #1d2125;
+  --muted: #59616a;
+  --line: #d6dbdf;
+  --dead: #e2e6e9;
+  --green: #2e6f4a;
+  --column: 38rem;
+  --gutter: 16px;
+  --display: "Red Hat Display", system-ui, sans-serif;
+  --text: "Red Hat Text", system-ui, sans-serif;
+  --mono: "Red Hat Mono", ui-monospace, monospace;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  background: var(--ground);
+  -webkit-text-size-adjust: 100%;
+  scrollbar-color: #b9c0c6 var(--ground);
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
-  color: #333;
-  background: #fff;
+  font: 400 1.0625rem/1.65 var(--text);
+  color: var(--ink);
+  background: var(--ground);
+  text-rendering: optimizeLegibility;
 }
 
-/* Hero Section */
-header {
-  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://picsum.photos/id/1015/1600/600') no-repeat center center/cover;
-  color: #fff;
-  text-align: center;
-  padding: 100px 20px;
+::selection { background: var(--green); color: #fff; }
+
+a {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+  transition: text-decoration-color 0.2s ease, color 0.2s ease;
+}
+a:hover { text-decoration-color: currentColor; }
+a:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
-header h1 {
-  font-size: 3rem;
-  margin-bottom: 10px;
+.defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+.dead { fill: var(--dead); }
+.on { fill: var(--green); }
+
+/* the margins: a live Game of Life field drawn by main.js, wide screens only */
+.life { display: none; }
+.life-note { display: none; }
+@media (min-width: 1100px) {
+  .life {
+    display: block;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .page {
+    position: relative;
+    z-index: 1;
+    background: var(--ground);
+  }
+  .over-life { cursor: crosshair; }
+  .life-note { display: block; margin-top: 0.5rem; }
 }
 
-header p {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
+.life-toggle {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0 0.125rem;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+  cursor: pointer;
+}
+.life-toggle:hover { text-decoration-color: currentColor; }
+.life-toggle:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; border-radius: 2px; }
+.life-toggle[hidden] { display: none; }
+
+.page {
+  max-width: calc(var(--column) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  min-height: 100vh;
 }
 
-.btn {
+/* ---------- top ---------- */
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem 1.5rem;
+  padding: 1.5rem 0 0;
+  font-size: 0.9375rem;
+}
+.org { font-weight: 600; }
+.top nav { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; }
+.top nav a { color: var(--muted); text-decoration: none; }
+.top nav a:hover { color: var(--ink); }
+
+/* ---------- hero ---------- */
+.hero { padding-top: clamp(4rem, 12vh, 7rem); }
+
+.glider {
+  display: block;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 2rem;
+}
+
+h1 {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(2.5rem, 7vw, 4rem);
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.when {
+  margin-top: 1.25rem;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(1.1875rem, 2.4vw, 1.375rem);
+  line-height: 1.4;
+}
+
+.lede {
+  margin-top: 0.75rem;
+  max-width: 32rem;
+  color: var(--muted);
+}
+
+.act {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  margin-top: 2.25rem;
+}
+
+.ticket {
   display: inline-block;
-  background: #ff6600;
-  color: #fff;
-  padding: 12px 25px;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
-  transition: background 0.3s ease;
+  padding: 0.7rem 1.15rem;
+  border: 1px dashed var(--muted);
+  border-radius: 2px;
+  color: var(--muted);
+  font-weight: 500;
+  line-height: 1.2;
+  cursor: default;
 }
 
-.btn:hover {
-  background: #e65c00;
+.ask { color: var(--muted); font-size: 0.9375rem; }
+.ask a { color: var(--ink); }
+
+/* ---------- photo ---------- */
+.photo { margin-top: clamp(3.5rem, 9vh, 5rem); }
+.photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  object-position: 50% 8%;
+  border-radius: 2px;
+  background: var(--dead);
+}
+figcaption {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--muted);
 }
 
-/* Sections */
-section {
-  padding: 0 20px;
-  max-width: 800px;
-  margin: 60px auto;
+/* ---------- sections ---------- */
+main section:not(.hero) { margin-top: clamp(4.5rem, 10vh, 6rem); }
+
+h2 {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin-bottom: 1rem;
 }
 
-section h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  text-align: center;
-}
+section p + p { margin-top: 1rem; }
 
-.schedule ul {
-  list-style: none;
-  padding-left: 0;
+.steps { padding-left: 1.5rem; }
+.steps li { padding-left: 0.35rem; }
+.steps li + li { margin-top: 0.6rem; }
+.steps li::marker {
+  font-family: var(--mono);
+  font-size: 0.875rem;
+  color: var(--muted);
 }
+.steps strong { font-weight: 600; }
 
+.takeaway { margin-top: 2rem; max-width: 34rem; color: var(--ink); text-wrap: pretty; }
+
+/* schedule */
+.schedule { list-style: none; border-bottom: 1px solid var(--line); }
 .schedule li {
-  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: 8.5rem minmax(0, 1fr);
+  gap: 1rem;
+  align-items: baseline;
+  padding: 0.65rem 0;
+  border-top: 1px solid var(--line);
+}
+.schedule time {
+  font-family: var(--mono);
+  font-size: 0.9375rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.schedule .s span { font-weight: 600; }
+.schedule .s span::before {
+  content: "";
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-right: 0.6rem;
+  background: var(--green);
+  vertical-align: 0.1em;
 }
 
-.btn {
-  margin-top: 15px;
+address { font-style: normal; margin-bottom: 1rem; }
+
+/* ---------- foot ---------- */
+.foot {
+  margin-top: clamp(5rem, 12vh, 7rem);
+  padding: 2rem 0 3rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.875rem;
+  color: var(--muted);
 }
 
-p {
-  margin-bottom: 15px;
+@media (max-width: 560px) {
+  .when .sep { display: none; }
+  .when .where { display: block; }
 }
 
-/* Footer */
-footer {
-  background: #222;
-  color: #aaa;
-  text-align: center;
-  padding: 20px;
-  font-size: 0.9rem;
+@media (max-width: 420px) {
+  .schedule li { grid-template-columns: 7.25rem minmax(0, 1fr); gap: 0.75rem; }
+  .schedule time { font-size: 0.875rem; }
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-  .header h1 {
-    font-size: 2rem;
-  }
-
-  .btn {
-    padding: 10px 20px;
-  }
-
-  section {
-    padding: 0 15px;
-    margin: 40px auto;
-  }
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
 }
 
-.moved {
-  text-decoration-line: line-through;
-  font-size: 0.8rem;
+/* short laptop screens: keep the photo as a deliberate peek at the fold */
+@media (max-height: 760px) {
+  .hero { padding-top: 2.5rem; }
+  .glider { margin-bottom: 1.25rem; }
+  .photo { margin-top: 2.5rem; }
 }
