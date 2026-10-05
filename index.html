@@ -1,61 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Coderetreat Linz 2026</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Coderetreat Linz 2027</title>
+  <meta name="description" content="Coderetreat Linz 2027: a free, day-long practice event for software developers. Saturday, 27 February 2027, Wissensturm Linz.">
+  <meta name="theme-color" content="#f2f4f5">
+  <link rel="preload" href="fonts/red-hat-text.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/red-hat-display.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-    <h1>Coderetreat Linz 2027</h1>
-	<p>27.2.2027 - Linz</p>
-    <a href="#" class="btn">Tickets (coming soon)</a>
-</header>
+<svg class="defs" aria-hidden="true" focusable="false">
+  <defs>
+    <pattern id="cells" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect x="1" y="1" width="8" height="8" class="dead"/>
+    </pattern>
+  </defs>
+</svg>
 
-<section class="about">
-    <h2>About the Event</h2>
-    <p><a href="https://www.coderetreat.org/">Coderetreats</a> are free day-long, intensive practice events, focusing on
+<canvas class="life" aria-hidden="true"></canvas>
+
+<div class="page">
+
+  <header class="top">
+    <p class="org">Coderetreat Linz</p>
+    <nav aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#format">Format</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#venue">Venue</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="title">
+      <svg class="glider" viewBox="0 0 50 50" role="img" aria-label="A glider from Conway’s Game of Life"><rect class="field" width="50" height="50" fill="url(#cells)"/><rect class="on" x="11" y="1" width="8" height="8"/><rect class="on" x="21" y="11" width="8" height="8"/><rect class="on" x="1" y="21" width="8" height="8"/><rect class="on" x="11" y="21" width="8" height="8"/><rect class="on" x="21" y="21" width="8" height="8"/></svg>
+
+      <h1 id="title">Coderetreat Linz 2027</h1>
+      <p class="when"><time datetime="2027-02-27">Saturday, 27 February 2027</time><span class="sep"> · </span><span class="where">Wissensturm Linz</span></p>
+      <p class="lede">A free, day-long practice event for software developers. One problem, five sessions, a new partner every time.</p>
+
+      <div class="act">
+        <p class="ticket">Tickets open soon</p>
+        <p class="ask">Questions? <a href="mailto:abl@linz.coderdojo.net?subject=Coderetreat">abl@linz.coderdojo.net</a></p>
+      </div>
+    </section>
+
+    <figure class="photo">
+      <picture>
+        <source srcset="images/closing-circle-2025.webp" type="image/webp">
+        <img src="images/closing-circle-2025.jpg" width="1200" height="1036" alt="Participants of Coderetreat Linz sit on grey chairs in a semicircle, facing two organizers in front of a screen that shows the closing circle questions.">
+      </picture>
+      <figcaption>Closing circle, Coderetreat Linz, January 2025.</figcaption>
+    </figure>
+
+    <section id="about" aria-labelledby="about-h">
+      <h2 id="about-h">About the event</h2>
+      <p><a href="https://www.coderetreat.org/">Coderetreats</a> are free day-long, intensive practice events, focusing on
         the fundamentals of software development and design. By providing developers the opportunity to take part in
-        focused practice, away from the pressures of "getting things done", the coderetreat format has proven itself to
+        focused practice, away from the pressures of &ldquo;getting things done&rdquo;, the coderetreat format has proven itself to
         be a highly effective means of learning and nurturing software development skills.</p>
-</section>
+    </section>
 
-<section class="prepatation">
-    <h2>What to bring</h2>
-    <p>Please bring your Laptop and have a setup ready which allows you to write and run UnitTests to not lose time at the beginning of the first session!
-		It does not matter which Language or IDE you use.</p>
-</section>
+    <section id="format" aria-labelledby="format-h">
+      <h2 id="format-h">How the day works</h2>
+      <ol class="steps">
+        <li><strong>Pair up.</strong> Two people, one keyboard.</li>
+        <li><strong>Work on one problem.</strong> Everyone, all day, the same exercise, e.g. Conway&rsquo;s Game of Life or similar.</li>
+        <li><strong>Add a constraint.</strong> Each 45-minute session brings a new one, for example ping-pong TDD, no if-statements or silent pairing.</li>
+        <li><strong>Delete the code.</strong> When the session ends, the code goes. Nothing to finish, nothing to ship.</li>
+        <li><strong>Short retro, new partner.</strong> Talk about what you tried, then start again with someone new.</li>
+        <li><strong>Closing circle.</strong> At the end of the day, everyone shares what they learned.</li>
+      </ol>
 
-<section class="schedule">
-    <h2>Schedule</h2>
-    <ul>
-        <li><strong>8:00 AM - 9:00 AM</strong> Breakfast & Coffee</li>
+      <p class="takeaway">Five sessions, the same problem, a new partner each time. The code is deleted, what you learned stays.</p>
+    </section>
 
-        <li><strong>9:00 AM - 9:30 AM</strong> Introduction & Welcome</li>
+    <section id="bring" aria-labelledby="bring-h">
+      <h2 id="bring-h">What to bring</h2>
+      <p>Please bring your laptop and have a setup ready which allows you to write and run unit tests, so you don&rsquo;t lose
+        time at the beginning of the first session. It does not matter which language or IDE you use.</p>
+    </section>
 
-        <li><strong>9:30 AM - 10:15 AM</strong> Session #1</li>
+    <section id="schedule" aria-labelledby="schedule-h">
+      <h2 id="schedule-h">Schedule</h2>
+      <ol class="schedule">
+        <li><time>08:00–09:00</time><span>Breakfast &amp; coffee</span></li>
+        <li><time>09:00–09:30</time><span>Introduction &amp; welcome</span></li>
+        <li class="s"><time>09:30–10:15</time><span>Session 1</span></li>
+        <li class="s"><time>10:30–11:15</time><span>Session 2</span></li>
+        <li class="s"><time>11:30–12:15</time><span>Session 3</span></li>
+        <li><time>12:30–13:30</time><span>Lunch</span></li>
+        <li class="s"><time>13:30–14:15</time><span>Session 4</span></li>
+        <li class="s"><time>14:30–15:15</time><span>Session 5</span></li>
+        <li><time>15:30–16:30</time><span>Retro &amp; closing</span></li>
+      </ol>
+    </section>
 
-        <li><strong>10:30 AM - 11:15 AM</strong> Session #2</li>
+    <section id="venue" aria-labelledby="venue-h">
+      <h2 id="venue-h">Location and contact</h2>
+      <address>
+        <a href="https://wissensturm.linz.at/">Wissensturm Linz</a><br>
+        Kärntnerstraße 26<br>
+        4040 Linz
+      </address>
+      <p>If you have questions about the Coderetreat you can contact us via
+        <a href="mailto:abl@linz.coderdojo.net?subject=Coderetreat">abl@linz.coderdojo.net</a>.</p>
+    </section>
+  </main>
 
-        <li><strong>11:30 AM - 12:15 PM</strong> Session #3</li>
+  <footer class="foot">
+    <p>Part of the worldwide <a href="https://www.coderetreat.org/">coderetreat</a> community.</p>
+    <p class="life-note">The squares in the margins run Conway&rsquo;s Game of Life. Click one to drop a glider, drag to draw. <button type="button" class="life-toggle" aria-pressed="false">Pause</button></p>
+  </footer>
 
-        <li><strong>12:30 PM - 1:30 PM</strong> Lunch</li>
+</div>
 
-        <li><strong>1:30 PM - 2:15 PM</strong> Session #4</li>
-
-        <li><strong>2:30 PM - 3:15 PM</strong> Session #5</li>
-
-        <li><strong>3:30 PM - 4:30 PM</strong> Retro & Closing</li>
-    </ul>
-</section>
-
-<section class="location">
-    <h2>Location and Contact</h2>
-    <p><a href="https://wissensturm.linz.at/">Wissensturm Linz </a><br>Kärntnerstraße 26<br>4040 Linz</p>
-    <p>If you have questions about the Coderetreat you can contact us via <a href="mailto:abl@linz.coderdojo.net?subject=Coderetreat">abl@linz.coderdojo.net</a></p>
-</section>
-
+<script src="script.js" defer></script>
 </body>
 </html>
